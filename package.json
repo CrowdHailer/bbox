@@ -1,6 +1,6 @@
 {
   "name": "bbox",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "description": "Find bounding box dimensions either within or surrounding arbitrary containers",
   "main": "index.js",
   "scripts": {
