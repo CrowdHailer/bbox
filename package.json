@@ -1,0 +1,27 @@
+{
+  "name": "bbox",
+  "version": "0.0.0",
+  "description": "Find bounding box dimensions either within or surrounding arbitrary containers",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/minijasminenode2 test.js --verbose"
+  },
+  "keywords": [
+    "bbox",
+    "bounding",
+    "box",
+    "geometry",
+    "svg",
+    "rectangle",
+    "oblong"
+  ],
+  "author": "Peter Saxton",
+  "license": "MIT",
+  "devDependencies": {
+    "minijasminenode2": "^1.0.0",
+    "jslint": "^0.6.2"
+  },
+  "dependencies": {
+    "2d-point": "^1.0.0"
+  }
+}
