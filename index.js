@@ -1,3 +1,5 @@
+var Point = require('2d-point');
+
 function BBox(x0, y0, x1, y1) {
     if (x1) {
         this.x0 = x0;
@@ -19,5 +21,17 @@ exports.create = function (x0, y0, x1, y1) {
 };
 
 exports.isBBox = function (obj) {
-    return (obj.constructor === BBox)
-}
+    return (obj.constructor === BBox);
+};
+
+exports.fit = function (container, aspect) {
+    var diagonal = Point.create(container.x1, container.y1);
+    var aspectDiagonal = Point.create(aspect.width, aspect.height);
+
+    aspectDiagonal = Point.fitWithin(diagonal,aspectDiagonal);
+
+    var offset = Point.subtract(diagonal, aspectDiagonal);
+    offset = Point.multiply(0.5, offset);
+    var upper = Point.add(offset, aspectDiagonal);
+    return new BBox(offset.x, offset.y, upper.x, upper.y)
+};
