@@ -1,3 +1,5 @@
+'use strict';
+
 var Point = require('2d-point');
 
 function BBox(x0, y0, x1, y1) {
@@ -8,11 +10,10 @@ function BBox(x0, y0, x1, y1) {
         this.y1 = y1;
         this.width = x1 - x0;
         this.height = y1 - y0;
-    }
-    else {
+    } else {
         this.width = x0;
         this.height = y0;
-    }    
+    }
     Object.freeze(this);
 }
 
@@ -25,15 +26,18 @@ exports.isBBox = function (obj) {
 };
 
 exports.fit = function (container, aspect) {
-    var containerDiagonal = Point.create(container.width, container.height);
-    var aspectDiagonal = Point.create(aspect.width, aspect.height);
-    var containerOrigin = Point.create(container.x0, container.y0);
+    var containerDiagonal = Point.create(container.width, container.height),
+        aspectDiagonal = Point.create(aspect.width, aspect.height),
+        containerOrigin = Point.create(container.x0, container.y0),
+        offset,
+        upper;
 
-    aspectDiagonal = Point.fitWithin(containerDiagonal,aspectDiagonal);
+    aspectDiagonal = Point.fitWithin(containerDiagonal, aspectDiagonal);
 
-    var offset = Point.subtract(containerDiagonal, aspectDiagonal);
+    offset = Point.subtract(containerDiagonal, aspectDiagonal);
     offset = Point.multiply(0.5, offset);
-    offset = Point.add(offset, Point.create(container.x0, container.y0))
-    var upper = Point.add(offset, aspectDiagonal);
-    return new BBox(offset.x, offset.y, upper.x, upper.y)
+    offset = Point.add(offset, containerOrigin);
+
+    upper = Point.add(offset, aspectDiagonal);
+    return new BBox(offset.x, offset.y, upper.x, upper.y);
 };

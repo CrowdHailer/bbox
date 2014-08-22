@@ -57,34 +57,34 @@ describe('Rectangle', function () {
 
         beforeEach(function () {
             container = BBox.create(0, 0, 100, 100);
-        })
+        });
 
         it('should fit for same aspect shape', function () {
             aspect = BBox.create(100, 100);
             result = BBox.fit(container, aspect);
-            expect(result).toEqual(BBox.create(0, 0, 100, 100))
+            expect(result).toEqual(BBox.create(0, 0, 100, 100));
         });
 
         it('should fit for same aspect ratio', function () {
             aspect = BBox.create(200, 200);
             result = BBox.fit(container, aspect);
-            expect(result).toEqual(BBox.create(0, 0, 100, 100))
+            expect(result).toEqual(BBox.create(0, 0, 100, 100));
         });
 
         it('should fit a portrait aspect', function () {
             aspect = BBox.create(250, 500);
             result = BBox.fit(container, aspect);
-            expect(result).toEqual(BBox.create(25, 0, 75, 100))
+            expect(result).toEqual(BBox.create(25, 0, 75, 100));
         });
 
         it('should fit a landscape aspect', function () {
             aspect = BBox.create(10, 5);
             result = BBox.fit(container, aspect);
-            expect(result).toEqual(BBox.create(0, 25, 100, 75))
+            expect(result).toEqual(BBox.create(0, 25, 100, 75));
         });
     });
-    
-    describe ('fitting within an offset container', function () {
+
+    describe('fitting within an offset container', function () {
         var container, aspect, result;
 
         beforeEach(function () {
@@ -94,13 +94,13 @@ describe('Rectangle', function () {
         it('should fit a lanscape aspect', function () {
             aspect = BBox.create(500, 250);
             result = BBox.fit(container, aspect);
-            expect(result).toEqual(BBox.create(0, 50, 100, 100))
+            expect(result).toEqual(BBox.create(0, 50, 100, 100));
         });
 
         it('should fit a portait aspect', function () {
             aspect = BBox.create(500, 500);
             result = BBox.fit(container, aspect);
-            expect(result).toEqual(BBox.create(25, 50, 75, 100))
+            expect(result).toEqual(BBox.create(25, 50, 75, 100));
         });
     });
 });
