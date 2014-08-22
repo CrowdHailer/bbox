@@ -83,4 +83,24 @@ describe('Rectangle', function () {
             expect(result).toEqual(BBox.create(0, 25, 100, 75))
         });
     });
+    
+    describe ('fitting within an offset container', function () {
+        var container, aspect, result;
+
+        beforeEach(function () {
+            container = BBox.create(0, 50, 100, 100);
+        });
+
+        it('should fit a lanscape aspect', function () {
+            aspect = BBox.create(500, 250);
+            result = BBox.fit(container, aspect);
+            expect(result).toEqual(BBox.create(0, 50, 100, 100))
+        });
+
+        it('should fit a portait aspect', function () {
+            aspect = BBox.create(500, 500);
+            result = BBox.fit(container, aspect);
+            expect(result).toEqual(BBox.create(25, 50, 75, 100))
+        });
+    });
 });

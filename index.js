@@ -25,13 +25,15 @@ exports.isBBox = function (obj) {
 };
 
 exports.fit = function (container, aspect) {
-    var diagonal = Point.create(container.x1, container.y1);
+    var containerDiagonal = Point.create(container.width, container.height);
     var aspectDiagonal = Point.create(aspect.width, aspect.height);
+    var containerOrigin = Point.create(container.x0, container.y0);
 
-    aspectDiagonal = Point.fitWithin(diagonal,aspectDiagonal);
+    aspectDiagonal = Point.fitWithin(containerDiagonal,aspectDiagonal);
 
-    var offset = Point.subtract(diagonal, aspectDiagonal);
+    var offset = Point.subtract(containerDiagonal, aspectDiagonal);
     offset = Point.multiply(0.5, offset);
+    offset = Point.add(offset, Point.create(container.x0, container.y0))
     var upper = Point.add(offset, aspectDiagonal);
     return new BBox(offset.x, offset.y, upper.x, upper.y)
 };
