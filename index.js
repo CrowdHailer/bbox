@@ -41,3 +41,20 @@ exports.fit = function (container, aspect) {
     upper = Point.add(offset, aspectDiagonal);
     return new BBox(offset.x, offset.y, upper.x, upper.y);
 };
+
+exports.surround = function (container, aspect) {
+    var containerDiagonal = Point.create(container.width, container.height),
+        aspectDiagonal = Point.create(aspect.width, aspect.height),
+        containerOrigin = Point.create(container.x0, container.y0),
+        offset,
+        upper;
+
+    aspectDiagonal = Point.fitOnce(containerDiagonal, aspectDiagonal);
+
+    offset = Point.subtract(containerDiagonal, aspectDiagonal);
+    offset = Point.multiply(0.5, offset);
+    offset = Point.add(offset, containerOrigin);
+
+    upper = Point.add(offset, aspectDiagonal);
+    return new BBox(offset.x, offset.y, upper.x, upper.y);
+};

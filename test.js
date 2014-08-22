@@ -52,7 +52,7 @@ describe('Rectangle', function () {
         });
     });
 
-    describe('fiting within a square container', function () {
+    describe('fitting within a square container', function () {
         var container, aspect, result;
 
         beforeEach(function () {
@@ -101,6 +101,58 @@ describe('Rectangle', function () {
             aspect = BBox.create(500, 500);
             result = BBox.fit(container, aspect);
             expect(result).toEqual(BBox.create(25, 50, 75, 100));
+        });
+    });
+
+    describe('surrounding a square container', function () {
+        var container, aspect, result;
+
+        beforeEach(function () {
+            container = BBox.create(0, 0, 100, 100);
+        });
+
+        it('should surround for same aspect shape', function () {
+            aspect = BBox.create(100, 100);
+            result = BBox.surround(container, aspect);
+            expect(result).toEqual(BBox.create(0, 0, 100, 100));
+        });
+
+        it('should surround for same aspect ratio', function () {
+            aspect = BBox.create(200, 200);
+            result = BBox.surround(container, aspect);
+            expect(result).toEqual(BBox.create(0, 0, 100, 100));
+        });
+
+        it('should surround a portrait aspect', function () {
+            aspect = BBox.create(250, 500);
+            result = BBox.surround(container, aspect);
+            expect(result).toEqual(BBox.create(0, -50, 100, 150));
+        });
+
+        it('should surround a landscape aspect', function () {
+            aspect = BBox.create(10, 5);
+            result = BBox.surround(container, aspect);
+            expect(result).toEqual(BBox.create(-50, 0, 150, 100));
+        });
+    });
+
+    describe('surrounding an offset container', function () {
+        var container, aspect, result;
+
+        beforeEach(function () {
+            container = BBox.create(0, 50, 100, 100);
+        });
+
+        it('should surround a lanscape aspect', function () {
+            aspect = BBox.create(500, 250);
+            result = BBox.surround(container, aspect);
+            expect(result).toEqual(BBox.create(0, 50, 100, 100));
+        });
+
+        it('should surround a portait aspect', function () {
+            aspect = BBox.create(500, 500);
+            result = BBox.surround(container, aspect);
+            expect(result).toEqual(BBox.create(0, 25, 100, 125));
         });
     });
 });
