@@ -1,11 +1,15 @@
 {
   "name": "bbox",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Find bounding box dimensions either within or surrounding arbitrary containers",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/minijasminenode2 test.js --verbose",
     "lint": "./node_modules/.bin/jslint index.js && ./node_modules/.bin/jslint --sloppy --predef it --predef expect --predef describe --predef beforeEach test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/CrowdHailer/bbox.git"
   },
   "keywords": [
     "bbox",
@@ -18,6 +22,9 @@
   ],
   "author": "Peter Saxton",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CrowdHailer/bbox/issues"
+  },
   "devDependencies": {
     "minijasminenode2": "^1.0.0",
     "jslint": "^0.6.2"
