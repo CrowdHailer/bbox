@@ -14,6 +14,16 @@ describe('Rectangle', function () {
             expect(box.y1).toEqual(4);
         });
 
+        it('from width and height', function () {
+            var box = BBox.create(2, 3);
+            expect(box.width).toEqual(2);
+            expect(box.height).toEqual(3);
+            expect(box.x0).toEqual();
+            expect(box.y0).toEqual();
+            expect(box.x1).toEqual();
+            expect(box.y1).toEqual();
+        });
+
         it('should create width and height attribute', function () {
             var box = BBox.create(1, 2, 3, 4);
             expect(box.width).toEqual(2);
